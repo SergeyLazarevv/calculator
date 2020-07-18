@@ -6,34 +6,37 @@
     box-sizing: border-box;
 }
 
+$font: 'Roboto', sans-serif;
+$btnSize: 62px;
+$numBtnColor: #585858;
+$numBtnHoverColor: #444444;
+$operatorBtnColor: #c89a7c;
+$operatorBtnHoverColor: #c98e66;
+$mainColor: #8f8f8f;
+$secondColor: #b2b2b2;
+$textColor: #cccccc;
+
 .wrap {
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: $font;
     .calculator {
         width: 310px;
         height: 465px;
         margin: 0 auto;
         border-radius: 10px;
-        background-color: #8f8f8f;
+        background-color: $mainColor;
         &__screen {
             height: 136px;
-            width: 100%;
             border-radius: 10px 10px 0 0;
             text-align: right;
             padding: 77px 20px 0 20px;
             font-size: 36px;
             border: none;
-            background-color: #8f8f8f;
-            color: #cccccc;
-            &:focus {
-                outline: none;
-            }
-            &:hover {
-                cursor: auto;
-            }
+            background-color: $mainColor;
+            color: $textColor;
         }
         .buttons {
             display: flex;
@@ -41,18 +44,17 @@
             padding: 14px 11px 0 11px;
             border-radius: 0 0 8px 8px;
             justify-content: space-between;
-            background-color: #b2b2b2;
+            background-color: $secondColor;
             .button {
                 border-radius: 5px;
-                width: 62px;
-                height: 62px;
+                width: $btnSize;
+                height: $btnSize;
                 font-size: 30px;
-                line-height: 62px;
+                line-height: $btnSize;
                 text-align: center;
                 margin-bottom: 12px;
-                position: relative;
-                color: #cccccc;
-                box-shadow: #8f8f8f 0 4px;
+                color: $textColor;
+                box-shadow: $mainColor 0 4px;
                 user-select: none;
                 &:hover {
                     cursor: pointer;
@@ -62,15 +64,15 @@
                 }
             }
             .button.number {
-                background-color: #585858;
+                background-color: $numBtnColor;
                 &:active {
-                    background-color: #444444;
+                    background-color: $numBtnHoverColor;
                 }
             }
             .button.operator {
-                background-color: #c89a7c;
+                background-color: $operatorBtnColor;
                 &:active {
-                    background-color: #c98e66;
+                    background-color: $operatorBtnHoverColor;
                 }
             }
         }
