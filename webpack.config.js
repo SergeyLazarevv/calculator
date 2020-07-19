@@ -28,7 +28,7 @@ module.exports = {
    },
    // set port and directory for development server
    devServer: {
-    port: 3000,
+    port: 2999,
     contentBase: path.join(__dirname, 'dist')
   },
   //plugin set

@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.broom {
+  position: absolute;
+  top: 20px;
+  left: 20px; }
+  .broom:hover {
+    cursor: pointer;
+    animation: broomWork 1s ease-in-out; }
+  .broom:active {
+    transform: translateY(3px); }
+
+@keyframes broomWork {
+  0% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(30deg); }
+  100% {
+    transform: rotate(0deg); } }
+
+.wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif; }
+  .wrap .calculator {
+    width: 310px;
+    height: 465px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #8f8f8f; }
+    .wrap .calculator__screen {
+      height: 136px;
+      border-radius: 10px 10px 0 0;
+      text-align: right;
+      padding: 77px 20px 0 20px;
+      font-size: 36px;
+      overflow: hidden;
+      border: none;
+      background-color: #8f8f8f;
+      color: #cccccc; }
+    .wrap .calculator .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 14px 11px 0 11px;
+      border-radius: 0 0 8px 8px;
+      justify-content: space-between;
+      background-color: #b2b2b2; }
+      .wrap .calculator .buttons .button {
+        border-radius: 5px;
+        width: 62px;
+        height: 62px;
+        font-size: 30px;
+        line-height: 62px;
+        text-align: center;
+        margin-bottom: 12px;
+        color: #cccccc;
+        box-shadow: #8f8f8f 0 4px;
+        user-select: none; }
+        .wrap .calculator .buttons .button:hover {
+          cursor: pointer; }
+        .wrap .calculator .buttons .button:active {
+          transform: translateY(3px); }
+      .wrap .calculator .buttons .button.number,
+      .wrap .calculator .buttons .result,
+      .wrap .calculator .buttons .dot {
+        background-color: #585858; }
+        .wrap .calculator .buttons .button.number:active,
+        .wrap .calculator .buttons .result:active,
+        .wrap .calculator .buttons .dot:active {
+          background-color: #444444; }
+      .wrap .calculator .buttons .button.operator {
+        background-color: #c89a7c; }
+        .wrap .calculator .buttons .button.operator:active {
+          background-color: #c98e66; }
+
