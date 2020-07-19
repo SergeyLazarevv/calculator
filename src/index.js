@@ -80,7 +80,14 @@ function changeSize(leng) {
 }*/
 
 function equal() {
+    console.log('equal')
+    let url = 'calculation.php'
+    fetch(url, {
+        method: 'POST',
+        //body: JSON.stringify('testText')
+    }).then(res=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err))
     //post to php
+    fetch(url)
     //and clear screen...
     screen.innerHTML = '0'
     //and last operator too

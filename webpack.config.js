@@ -29,7 +29,7 @@ module.exports = {
    // set port and directory for development server
    devServer: {
     port: 2999,
-    contentBase: path.join(__dirname, 'dist')
+    contentBase: path.join(__dirname)
   },
   //plugin set
    plugins: [
