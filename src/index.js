@@ -5,7 +5,8 @@ const screen = document.querySelector('.calculator__screen'), // screen
     result = document.querySelector('.result'),// equal button
     broom = document.querySelector('.broom') // broom 
 //used in dot func
-let lastOperator = null
+let lastOperator = null,
+    resultScreen = false;
 
 //clear screen...
 broom.addEventListener('click',()=>{
@@ -13,20 +14,29 @@ broom.addEventListener('click',()=>{
     screen.innerHTML = '0'
     //last operator clear
     lastOperator = null
+    resultScreen=false
 })
 //add number at screen as string
 function addNumAtScreen(event) {
     //if screen is empty change zero to first number...
     if (screen.innerHTML === '0') {
         screen.innerHTML = event.target.innerHTML
+    } else if (resultScreen){
+        console.log('bil result')
+        //...in case of result on display replace it by event number
+        //but in case of adding operator result stay on screen
+        screen.innerHTML = event.target.innerHTML
+        //
+        resultScreen=false
     } else {
-        //...or concat number
+        //just concat
         screen.innerHTML += event.target.innerHTML
     }
 }
 
 //add operators at screen
 function addOperatorAtScreen(event) {
+    resultScreen=false
     if (screen.innerHTML[screen.innerHTML.length-1] != lastOperator) {
         //add operator to screen
         screen.innerHTML += event.target.getAttribute('value')
@@ -47,6 +57,8 @@ function addOperatorAtScreen(event) {
 
 //add dot at screen
 function addDotAtScreen() {
+    //in case of add dot width result at screen reset result var
+    resultScreen=false
     //if dot is first set 0.
     if (screen.innerHTML == '0') screen.innerHTML = '0.'
     //for any case...
@@ -81,15 +93,60 @@ function changeSize(leng) {
 
 function equal() {
     console.log('equal')
-    let url = 'calculation.php'
-    fetch(url, {
-        method: 'POST',
+    //get expression from screen
+    let inputString = screen.innerHTML;
+    //make array of numbers
+    let numbers = inputString.split(/\+|\-|\*|\//g);
+    //console.log(numbers)
+    //get operators array
+    let operators = inputString.replace(/[0-9]|\./g, "").split("");
+    //console.log(operators)
+    //get index of devide operator in operators array
+    let divide = operators.indexOf("/");
+    //divide operation at first
+    while (divide != -1) {
+        //while operators array has divide sign...
+        //replace two operands with result
+        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+        //remove operator from array
+        operators.splice(divide, 1);
+        //check any divide operator
+        divide = operators.indexOf("/");
+    }
+    //the same operation for multiply
+    let multiply = operators.indexOf("*");
+    while (multiply != -1) {
+        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+        operators.splice(multiply, 1);
+        multiply = operators.indexOf("*");
+    }
+    //substraction
+    let subtract = operators.indexOf("-");
+    while (subtract != -1) {
+        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
+        operators.splice(subtract, 1);
+        subtract = operators.indexOf("-");
+    }
+    //addition
+    let add = operators.indexOf("+");
+    while (add != -1) {
+        //using parseFloat is necessary, otherwise it will result in string concatenation
+        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
+        operators.splice(add, 1);
+        add = operators.indexOf("+");
+    }
+
+    screen.innerHTML = numbers[0]; // displaying the result = last one number in number array
+    resultScreen = true
+
+    //let url = 'https://heylookatthis.website'
+    ///fetch(url, {
+       // method: 'POST',
         //body: JSON.stringify('testText')
-    }).then(res=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    //}).then(res=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err))
     //post to php
-    fetch(url)
     //and clear screen...
-    screen.innerHTML = '0'
+    //screen.innerHTML = '0'
     //and last operator too
     lastOperator=null
 }
