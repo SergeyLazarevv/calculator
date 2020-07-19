@@ -63,7 +63,9 @@ $textColor: #cccccc;
                    transform: translateY(3px);
                 }
             }
-            .button.number {
+            .button.number,
+            .result,
+            .dot {
                 background-color: $numBtnColor;
                 &:active {
                     background-color: $numBtnHoverColor;
