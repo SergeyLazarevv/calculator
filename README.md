@@ -15,5 +15,5 @@ test task
 - в завершении в массиве чисел остается одно число которое является результатом всего выражения.
 - само выражение и результат вычислений записываются в file.txt
 - результат возвращается и присваиватся как содержимое дисплея калькулятора.
-- калькулятор опубликован на github pages https://sergeylazarevv.github.io/calculator/
-- backend разместил на хостинге Fornex.
+Rалькулятор опубликован на github pages https://sergeylazarevv.github.io/calculator/
+Backend разместил на хостинге Fornex.
