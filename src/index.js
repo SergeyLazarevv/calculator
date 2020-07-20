@@ -93,57 +93,24 @@ function changeSize(leng) {
 
 function equal() {
     console.log('equal')
-    //get expression from screen
-    let inputString = screen.innerHTML;
-    //make array of numbers
-    let numbers = inputString.split(/\+|\-|\*|\//g);
-    //console.log(numbers)
-    //get operators array
-    let operators = inputString.replace(/[0-9]|\./g, "").split("");
-    //console.log(operators)
-    //get index of devide operator in operators array
-    let divide = operators.indexOf("/");
-    //divide operation at first
-    while (divide != -1) {
-        //while operators array has divide sign...
-        //replace two operands with result
-        numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
-        //remove operator from array
-        operators.splice(divide, 1);
-        //check any divide operator
-        divide = operators.indexOf("/");
-    }
-    //the same operation for multiply
-    let multiply = operators.indexOf("*");
-    while (multiply != -1) {
-        numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
-        operators.splice(multiply, 1);
-        multiply = operators.indexOf("*");
-    }
-    //substraction
-    let subtract = operators.indexOf("-");
-    while (subtract != -1) {
-        numbers.splice(subtract, 2, numbers[subtract] - numbers[subtract + 1]);
-        operators.splice(subtract, 1);
-        subtract = operators.indexOf("-");
-    }
-    //addition
-    let add = operators.indexOf("+");
-    while (add != -1) {
-        //using parseFloat is necessary, otherwise it will result in string concatenation
-        numbers.splice(add, 2, parseFloat(numbers[add]) + parseFloat(numbers[add + 1]));
-        operators.splice(add, 1);
-        add = operators.indexOf("+");
-    }
-
-    screen.innerHTML = numbers[0]; // displaying the result = last one number in number array
-    resultScreen = true
-
-    //let url = 'https://heylookatthis.website'
-    ///fetch(url, {
-       // method: 'POST',
-        //body: JSON.stringify('testText')
-    //}).then(res=>res.json()).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    //set data variable
+    let data = screen.innerHTML;
+    //proxy for corps policy
+    let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    //php url
+    let url = 'http://heylookatthis.website/'
+    fetch(proxyUrl+url, {
+        //set method
+        method: 'post',
+        //type of send content
+        headers: {'content-type': 'application/json'},
+        //set data
+        body: JSON.stringify(data)
+    }).then(res=>res.json())
+    .then((res)=>res)
+    //assigment result to resilt screen
+    .then((res)=>screen.innerHTML=res)
+    .catch((err)=>console.log(err))
     //post to php
     //and clear screen...
     //screen.innerHTML = '0'
