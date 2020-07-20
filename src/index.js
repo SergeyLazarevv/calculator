@@ -21,7 +21,6 @@ function addNumAtScreen(event) {
     if (screen.innerHTML === '0') {
         screen.innerHTML = event.target.innerHTML
     } else if (resultScreen){
-        console.log('bil result')
         //...in case of result on display replace it by event number
         //but in case of adding operator result stay on screen
         screen.innerHTML = event.target.innerHTML
@@ -45,10 +44,8 @@ function addOperatorAtScreen(event) {
         //if needed to change operator
         //slice expression widhout last operator
         screen.innerHTML = screen.innerHTML.slice(0,screen.innerHTML.length-1)
-        console.log(screen.innerHTML)
         //set new last operator...
         lastOperator=event.target.getAttribute('value')
-        console.log(lastOperator)
         //...and add it at screen expression
         screen.innerHTML+=lastOperator
     }
