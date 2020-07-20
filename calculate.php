@@ -2,13 +2,8 @@
     //get data from client
     $json = file_get_contents('php://input');
     //decoding data from jcon
-    //$dat = json_decode($json);
     $expression = json_decode($json);
-    //if data is empty...
-    /*if($expression=''){
-        //...return message
-        echo json_encode('no data');
-    }*/
+
     //get numbers array from expression
     $numbers = preg_split('/\-|\+|\*|\//', $expression);
     

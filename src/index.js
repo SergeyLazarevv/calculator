@@ -2,7 +2,6 @@ import './style.scss';
 
 const screen = document.querySelector('.calculator__screen'), // screen
     buttons = document.querySelectorAll('.button'), // buttons
-    result = document.querySelector('.result'),// equal button
     broom = document.querySelector('.broom') // broom 
 //used in dot func
 let lastOperator = null,
@@ -81,15 +80,6 @@ function addDotAtScreen() {
         screen.innerHTML+='0.'
     } //in other cases, the dot is not put
 }
-
-/*let defaultSize = 36
-function changeSize(leng) {
-    if (leng<13) screen.style.fontSize= defaultSize +'px'
-    if (leng>=13) {
-        defaultSize-=1
-        screen.style.fontSize=defaultSize +'px'
-    }
-}*/
 
 function equal() {
     //take data from screen and make post request to php
