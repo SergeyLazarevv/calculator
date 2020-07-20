@@ -86,6 +86,7 @@ function equal() {
     //php make calculate and return result
     //set data variable
     let data = screen.innerHTML;
+
     //proxy for corps policy
     let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     //php url
