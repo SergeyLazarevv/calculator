@@ -92,7 +92,8 @@ function changeSize(leng) {
 }*/
 
 function equal() {
-    console.log('equal')
+    //take data from screen and make post request to php
+    //php make calculate and return result
     //set data variable
     let data = screen.innerHTML;
     //proxy for corps policy
@@ -106,12 +107,13 @@ function equal() {
         headers: {'content-type': 'application/json'},
         //set data
         body: JSON.stringify(data)
+        //convert data from json
     }).then(res=>res.json())
-    .then((res)=>res)
     //assigment result to resilt screen
     .then((res)=>screen.innerHTML=res)
+    .then(()=>resultScreen = true)
+    //catch and log errors
     .catch((err)=>console.log(err))
-    //post to php
     //and clear screen...
     //screen.innerHTML = '0'
     //and last operator too
